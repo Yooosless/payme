@@ -3,22 +3,24 @@ use utoipa::OpenApi;
 use crate::handlers::{
     auth::{AuthRequest, AuthResponse},
     budget::{CreateCategory, UpdateCategory, UpdateMonthlyBudget},
+    export::{
+        BudgetExport, CategoryExport, FixedExpenseExport, IncomeExport, ItemExport, MonthExport,
+        UserExport,
+    },
     fixed_expenses::{CreateFixedExpense, UpdateFixedExpense},
     income::{CreateIncome, UpdateIncome},
     items::{CreateItem, UpdateItem},
-    savings::{RothIraResponse, SavingsResponse, UpdateSavings, UpdateRothIra},
-    export::{UserExport, CategoryExport, MonthExport, FixedExpenseExport, IncomeExport, BudgetExport, ItemExport}
+    savings::{RothIraResponse, SavingsResponse, UpdateRothIra, UpdateSavings},
 };
 use crate::models::{
-    BudgetCategory, FixedExpense, IncomeEntry, Item, 
-    ItemWithCategory, Month, MonthSummary, MonthlyBudget, 
-    StatsResponse, CategoryStats, MonthlyStats
+    BudgetCategory, CategoryStats, FixedExpense, IncomeEntry, Item, ItemWithCategory, Month,
+    MonthSummary, MonthlyBudget, MonthlyStats, StatsResponse,
 };
 
 #[derive(OpenApi)]
 #[openapi(
     paths(
-        crate::handlers::auth::register, 
+        crate::handlers::auth::register,
         crate::handlers::auth::login,
         crate::handlers::auth::logout,
         crate::handlers::auth::me,
@@ -53,19 +55,40 @@ use crate::models::{
         crate::handlers::savings::update_roth_ira,
         crate::handlers::stats::get_stats
     ),
-    components(
-        schemas(
-            AuthRequest, AuthResponse, MonthlyBudget, UpdateMonthlyBudget, 
-            IncomeEntry, CreateIncome, UpdateIncome,
-            Item, ItemWithCategory, CreateItem, UpdateItem,
-            FixedExpense, CreateFixedExpense, UpdateFixedExpense,
-            BudgetCategory, CreateCategory, UpdateCategory,
-            Month, MonthSummary, 
-            StatsResponse, CategoryStats, MonthlyStats,
-            RothIraResponse, SavingsResponse, UpdateSavings, UpdateRothIra,
-            UserExport, CategoryExport, MonthExport, FixedExpenseExport, 
-            IncomeExport, BudgetExport, ItemExport
-        )
-    )
+    components(schemas(
+        AuthRequest,
+        AuthResponse,
+        MonthlyBudget,
+        UpdateMonthlyBudget,
+        IncomeEntry,
+        CreateIncome,
+        UpdateIncome,
+        Item,
+        ItemWithCategory,
+        CreateItem,
+        UpdateItem,
+        FixedExpense,
+        CreateFixedExpense,
+        UpdateFixedExpense,
+        BudgetCategory,
+        CreateCategory,
+        UpdateCategory,
+        Month,
+        MonthSummary,
+        StatsResponse,
+        CategoryStats,
+        MonthlyStats,
+        RothIraResponse,
+        SavingsResponse,
+        UpdateSavings,
+        UpdateRothIra,
+        UserExport,
+        CategoryExport,
+        MonthExport,
+        FixedExpenseExport,
+        IncomeExport,
+        BudgetExport,
+        ItemExport
+    ))
 )]
 pub struct ApiDoc;

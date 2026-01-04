@@ -88,7 +88,7 @@ pub async fn create_fixed_expense(
     params(("id" = i64, Path, description = "Expense ID")),
     request_body = UpdateFixedExpense,
     responses(
-        (status = 200, body = FixedExpense), 
+        (status = 200, body = FixedExpense),
         (status = 404, description = "Not Found"),
         (status = 500, description = "Internal server error")
     ),

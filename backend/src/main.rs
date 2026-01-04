@@ -3,8 +3,8 @@ mod db;
 mod handlers;
 mod middleware;
 mod models;
-mod pdf;
 mod openapi;
+mod pdf;
 
 use axum::{
     middleware::from_fn,
@@ -14,12 +14,12 @@ use axum::{
 use tower_http::cors::{Any, CorsLayer};
 use tower_http::services::ServeDir;
 
+use crate::openapi::ApiDoc;
 use config::Config;
 use handlers::{auth, budget, export, fixed_expenses, income, items, months, savings, stats};
 use middleware::auth::auth_middleware;
 use utoipa::OpenApi;
 use utoipa_swagger_ui::SwaggerUi;
-use crate::openapi::ApiDoc;
 
 #[tokio::main]
 async fn main() {
