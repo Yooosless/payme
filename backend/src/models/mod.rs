@@ -1,7 +1,8 @@
 use chrono::{DateTime, NaiveDate, Utc};
 use serde::{Deserialize, Serialize};
+use utoipa::ToSchema;
 
-#[derive(Debug, Clone, Serialize, Deserialize, sqlx::FromRow)]
+#[derive(Debug, Clone, Serialize, Deserialize, sqlx::FromRow, ToSchema)]
 pub struct FixedExpense {
     pub id: i64,
     pub user_id: i64,
@@ -9,7 +10,7 @@ pub struct FixedExpense {
     pub amount: f64,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, sqlx::FromRow)]
+#[derive(Debug, Clone, Serialize, Deserialize, sqlx::FromRow, ToSchema)]
 pub struct BudgetCategory {
     pub id: i64,
     pub user_id: i64,
@@ -17,7 +18,7 @@ pub struct BudgetCategory {
     pub default_amount: f64,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, sqlx::FromRow)]
+#[derive(Debug, Clone, Serialize, Deserialize, sqlx::FromRow, ToSchema)]
 pub struct Month {
     pub id: i64,
     pub user_id: i64,
@@ -27,7 +28,7 @@ pub struct Month {
     pub closed_at: Option<DateTime<Utc>>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, sqlx::FromRow)]
+#[derive(Debug, Clone, Serialize, Deserialize, sqlx::FromRow, ToSchema)]
 pub struct IncomeEntry {
     pub id: i64,
     pub month_id: i64,
@@ -35,7 +36,7 @@ pub struct IncomeEntry {
     pub amount: f64,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, sqlx::FromRow)]
+#[derive(Debug, Clone, Serialize, Deserialize, sqlx::FromRow, ToSchema)]
 pub struct MonthlyBudget {
     pub id: i64,
     pub month_id: i64,
@@ -43,7 +44,7 @@ pub struct MonthlyBudget {
     pub allocated_amount: f64,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, sqlx::FromRow)]
+#[derive(Debug, Clone, Serialize, Deserialize, sqlx::FromRow, ToSchema)]
 pub struct Item {
     pub id: i64,
     pub month_id: i64,
@@ -53,7 +54,7 @@ pub struct Item {
     pub spent_on: NaiveDate,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, ToSchema)]
 pub struct MonthlyBudgetWithCategory {
     pub id: i64,
     pub month_id: i64,
@@ -63,7 +64,7 @@ pub struct MonthlyBudgetWithCategory {
     pub spent_amount: f64,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, ToSchema)]
 pub struct MonthSummary {
     pub month: Month,
     pub income_entries: Vec<IncomeEntry>,
@@ -77,7 +78,7 @@ pub struct MonthSummary {
     pub remaining: f64,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, sqlx::FromRow)]
+#[derive(Debug, Clone, Serialize, Deserialize, sqlx::FromRow, ToSchema)]
 pub struct ItemWithCategory {
     pub id: i64,
     pub month_id: i64,
@@ -88,7 +89,7 @@ pub struct ItemWithCategory {
     pub spent_on: NaiveDate,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, ToSchema)]
 pub struct CategoryStats {
     pub category_id: i64,
     pub category_label: String,
@@ -98,7 +99,7 @@ pub struct CategoryStats {
     pub change_percent: Option<f64>,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, ToSchema)]
 pub struct MonthlyStats {
     pub year: i32,
     pub month: i32,
@@ -108,7 +109,7 @@ pub struct MonthlyStats {
     pub net: f64,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, ToSchema)]
 pub struct StatsResponse {
     pub category_comparisons: Vec<CategoryStats>,
     pub monthly_trends: Vec<MonthlyStats>,

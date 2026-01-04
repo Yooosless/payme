@@ -64,34 +64,9 @@ SQLite database created at `backend/payme.db`. Tables auto-migrate on startup.
 
 Export/import database via the UI download button or `/api/export` endpoint.
 
-## API
+## OpenAPI Swagger endpoint
 
-| Endpoint | Method | Description |
-|----------|--------|-------------|
-| `/api/auth/register` | POST | Create user |
-| `/api/auth/login` | POST | Login |
-| `/api/auth/logout` | POST | Logout |
-| `/api/auth/me` | GET | Current user |
-| `/api/export/user-data` | GET | Export user data as JSON |
-| `/api/import/user-data` | POST | Import user data from JSON |
-| `/api/months` | GET | List months |
-| `/api/months/current` | GET | Get/create current month |
-| `/api/months/:id` | GET | Get month details |
-| `/api/months/:id/close` | POST | Close month, generate PDF |
-| `/api/months/:id/pdf` | GET | Download month PDF |
-| `/api/fixed-expenses` | GET/POST | List/create fixed expenses |
-| `/api/fixed-expenses/:id` | PUT/DELETE | Update/delete fixed expense |
-| `/api/categories` | GET/POST | List/create budget categories |
-| `/api/categories/:id` | PUT/DELETE | Update/delete category |
-| `/api/months/:id/budgets` | GET | List monthly budgets |
-| `/api/months/:mid/budgets/:id` | PUT | Update monthly budget |
-| `/api/months/:id/income` | GET/POST | List/create income |
-| `/api/months/:mid/income/:id` | PUT/DELETE | Update/delete income |
-| `/api/months/:id/items` | GET/POST | List/create items |
-| `/api/months/:mid/items/:id` | PUT/DELETE | Update/delete item |
-| `/api/stats` | GET | Statistics data |
-| `/api/savings` | GET/PUT | Get/update savings |
-| `/api/roth-ira` | GET/PUT | Get/update Roth IRA |
+To view all the api endpoints and schemas, go to: http://localhost:3001/swagger-ui
 
 ## Docker
 

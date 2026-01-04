@@ -3,6 +3,7 @@ mod db;
 mod handlers;
 mod middleware;
 mod models;
+mod openapi;
 mod pdf;
 
 use axum::{
@@ -13,9 +14,12 @@ use axum::{
 use tower_http::cors::{Any, CorsLayer};
 use tower_http::services::ServeDir;
 
+use crate::openapi::ApiDoc;
 use config::Config;
 use handlers::{auth, budget, export, fixed_expenses, income, items, months, savings, stats};
 use middleware::auth::auth_middleware;
+use utoipa::OpenApi;
+use utoipa_swagger_ui::SwaggerUi;
 
 #[tokio::main]
 async fn main() {
@@ -107,6 +111,7 @@ async fn main() {
     let app = Router::new()
         .merge(public_routes)
         .merge(protected_routes)
+        .merge(SwaggerUi::new("/swagger-ui").url("/api-docs/openapi.json", ApiDoc::openapi()))
         .fallback_service(ServeDir::new("/app/static"))
         .layer(cors)
         .with_state(pool);
